@@ -234,9 +234,11 @@ function render() {
       const wtDayCells = days.map(d=>{
         const ds=dateStr(d);
         const scheduled=wtBizDays.has(ds);
+        const isFirst=scheduled&&[...wtBizDays].sort()[0]===ds;
         const bg=scheduled?`background:${wtColor}66;border:2px solid ${wtColor};`:'';
         const cls=['day-cell','droppable',isWeekend(d)?'weekend':'',isToday(d)?'today-col':''].filter(Boolean).join(' ');
-        return `<td class="${cls}" style="${bg}" data-date="${ds}"
+        const dragAttrs=scheduled&&isFirst?`draggable="true" ondragstart="onCellDragStart(event,'${safeJs(proj)}','${safeJs(wt)}')" style="${bg}cursor:grab;"`:`style="${bg}"`;  
+        return `<td class="${cls}" ${dragAttrs} data-date="${ds}"
           ondragover="onDragOver(event)" ondragleave="onDragLeave(event)"
           ondrop="onDrop(event,'${safeJs(proj)}','${safeJs(wt)}')"></td>`;
       }).join('');
@@ -319,6 +321,14 @@ function saveEst(proj,wt,wtid) {
     document.getElementById('status').textContent=`Saved: ${proj} / ${wt} at ${new Date().toLocaleTimeString()}`;
     render();
   },800);
+}
+
+function onCellDragStart(e,proj,wt) {
+  dragKey=estKey(proj,wt);
+  e.dataTransfer.effectAllowed='move';
+  e.dataTransfer.setData('text/plain',dragKey);
+  e.currentTarget.style.opacity='0.5';
+  e.currentTarget.addEventListener('dragend',()=>{ e.currentTarget.style.opacity=''; },{ once:true });
 }
 
 function onDragStart(e,proj,wt) {
