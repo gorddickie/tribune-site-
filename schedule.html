@@ -54,6 +54,11 @@
 <body>
 <h2>🗓️ Tribune Schedule Planner</h2>
 <p class="hint">Click a project to expand work types. Enter hours + employees per work type, then drag the red badge onto the calendar to schedule.</p>
+<div style="margin-bottom:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+  <label style="font-size:13px;color:#555;font-weight:600;">📅 Week:</label>
+  <select id="week-select" style="padding:7px 12px;border-radius:6px;border:1px solid #ccc;font-size:13px;background:white;cursor:pointer;" onchange="loadWeek(this.value)"><option>Loading...</option></select>
+  <span style="font-size:11px;color:#aaa;">Actual hours from TSheets for selected week</span>
+</div>
 <div id="loading">⏳ Loading...</div>
 <div class="scroll-wrap" id="table-container"></div>
 <a href="/" class="btn">← Hours Report</a>
@@ -110,9 +115,33 @@ function businessDays(startDate,count) {
 }
 
 async function load() {
-  const snapResp = await fetch(`${SUPABASE_URL}/rest/v1/hours_snapshots?select=data&order=generated_at.desc&limit=1`, {headers:hdrs});
+  // Load all available weeks for selector
+  const allSnaps = await fetch(`${SUPABASE_URL}/rest/v1/hours_snapshots?select=id,week_start,week_end,generated_at&order=week_start.desc`, {headers:hdrs}).then(r=>r.json());
+
+  // Dedupe by week_start
+  const weekMap = {};
+  for(const r of allSnaps) {
+    if(!weekMap[r.week_start]||r.generated_at>weekMap[r.week_start].generated_at) weekMap[r.week_start]=r;
+  }
+  const weeks = Object.values(weekMap).sort((a,b)=>b.week_start.localeCompare(a.week_start));
+
+  const sel = document.getElementById('week-select');
+  sel.innerHTML = weeks.map(w=>{
+    const s=new Date(w.week_start+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
+    const e=new Date(w.week_end+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
+    return `<option value="${w.week_start}">${s} – ${e}</option>`;
+  }).join('');
+
+  await loadWeek(weeks[0].week_start);
+}
+
+async function loadWeek(weekStart) {
+  document.getElementById('loading').style.display='block';
+  document.getElementById('table-container').innerHTML='';
+
+  const snapResp = await fetch(`${SUPABASE_URL}/rest/v1/hours_snapshots?week_start=eq.${weekStart}&order=generated_at.desc&limit=1`, {headers:hdrs});
   const snaps = await snapResp.json();
-  if(!snaps.length) { document.getElementById('loading').textContent='❌ No project data.'; return; }
+  if(!snaps.length) { document.getElementById('loading').textContent='❌ No data for that week.'; return; }
 
   const snapData = snaps[0].data;
   allProjects = snapData.projects.map(p=>p.name);
