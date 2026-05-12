@@ -46,6 +46,10 @@
   .arrow { transition: transform 0.2s; display: inline-block; font-size: 10px; margin-right: 5px; color: #aaa; }
   .arrow.open { transform: rotate(90deg); }
   .wt-days { font-size: 11px; color: #c0392b; font-weight: 600; }
+  td.has-work { position: relative; }
+  td.has-work::after { content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: #27ae60; }
+  .tooltip { position: fixed; background: #2c3e50; color: white; padding: 6px 10px; border-radius: 6px; font-size: 11px; pointer-events: none; z-index: 9999; white-space: nowrap; display: none; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+  .tooltip strong { color: #2ecc71; }
   .btn { display: inline-block; margin-top: 16px; margin-right: 10px; background: #2c3e50; color: white; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600; }
   #loading { color: #999; font-size: 14px; margin-top: 20px; }
   #status { font-size: 11px; color: #aaa; margin-top: 8px; }
@@ -60,6 +64,7 @@
   <span style="font-size:11px;color:#aaa;">Actual hours from TSheets for selected week</span>
 </div>
 <div id="loading">⏳ Loading...</div>
+<div class="tooltip" id="tooltip"></div>
 <div class="scroll-wrap" id="table-container"></div>
 <a href="/" class="btn">← Hours Report</a>
 <p id="status"></p>
@@ -266,9 +271,14 @@ function render() {
         const scheduled=wtBizDays.has(ds);
         const isFirst=scheduled&&[...wtBizDays].sort()[0]===ds;
         const bg=scheduled?`background:${wtColor}66;border:2px solid ${wtColor};`:'';
-        const cls=['day-cell','droppable',isWeekend(d)?'weekend':'',isToday(d)?'today-col':''].filter(Boolean).join(' ');
+        const empOnDate=(wtData.emp_by_date||{})[ds]||[];
+        const hasWork=empOnDate.length>0;
+        const tipText=hasWork?empOnDate.map(e=>`${e.emp}: ${e.hrs}h`).join('|'):'';
+        const workCls=hasWork?' has-work':'';
+        const cls=['day-cell','droppable',isWeekend(d)?'weekend':'',isToday(d)?'today-col':''].filter(Boolean).join(' ')+workCls;
         const dragAttrs=scheduled&&isFirst?`draggable="true" ondragstart="onCellDragStart(event,'${safeJs(proj)}','${safeJs(wt)}')" style="${bg}cursor:grab;"`:`style="${bg}"`;  
-        return `<td class="${cls}" ${dragAttrs} data-date="${ds}"
+        return `<td class="${cls}" ${dragAttrs} data-date="${ds}" data-tip="${tipText}"
+          onmouseenter="showTip(event)" onmouseleave="hideTip()"
           ondragover="onDragOver(event)" ondragleave="onDragLeave(event)"
           ondrop="onDrop(event,'${safeJs(proj)}','${safeJs(wt)}')"></td>`;
       }).join('');
@@ -404,6 +414,18 @@ async function clearWtSched(proj,wt) {
   });
   render();
 }
+
+
+function showTip(e) {
+  const tip = e.currentTarget.dataset.tip;
+  if(!tip) return;
+  const el = document.getElementById('tooltip');
+  el.innerHTML = tip.split('|').map(t=>`<div>${t}</div>`).join('');
+  el.style.display = 'block';
+  el.style.left = (e.clientX+12)+'px';
+  el.style.top = (e.clientY-10)+'px';
+}
+function hideTip() { document.getElementById('tooltip').style.display='none'; }
 
 load();
 </script>
