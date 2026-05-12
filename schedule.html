@@ -46,6 +46,7 @@
   .arrow { transition: transform 0.2s; display: inline-block; font-size: 10px; margin-right: 5px; color: #aaa; }
   .arrow.open { transform: rotate(90deg); }
   .wt-days { font-size: 11px; color: #c0392b; font-weight: 600; }
+  td.recorded { background: #eaf2ff; font-weight: 600; color: #1a5276; font-size: 12px; }
   td.has-work { background: #27ae60 !important; }
   td.has-work.weekend { background: #52be80 !important; }
   .tooltip { position: fixed; background: #2c3e50; color: white; padding: 6px 10px; border-radius: 6px; font-size: 11px; pointer-events: none; z-index: 9999; white-space: nowrap; display: none; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
@@ -158,6 +159,18 @@ async function loadWeek(weekStart) {
     });
   });
 
+  // Load ALL snapshots to compute total recorded hours per work type
+  const allSnapData = await fetch(`${SUPABASE_URL}/rest/v1/hours_snapshots?select=data&order=week_start.asc`, {headers:hdrs}).then(r=>r.json());
+  window._totalHrsMap = {}; // "proj||wt" -> total hours across all weeks
+  for(const snap of allSnapData) {
+    for(const proj of (snap.data.projects||[])) {
+      for(const [wt, wtd] of Object.entries(proj.worktypes||{})) {
+        const key = proj.name+'||'+wt;
+        window._totalHrsMap[key] = (window._totalHrsMap[key]||0) + (wtd.total||0);
+      }
+    }
+  }
+
   const estResp = await fetch(`${SUPABASE_URL}/rest/v1/estimates?select=*`, {headers:hdrs});
   const estRows = await estResp.json();
   for(const r of estRows) estMap[estKey(r.project,r.work_type)] = r;
@@ -245,7 +258,7 @@ function render() {
       </td>
       <td class="agg-cell" style="background:#f0fff4">${totalHrs>0?totalHrs.toFixed(1)+' hrs':'—'}</td>
       <td class="agg-cell" style="background:#f9f0ff">${maxEmp||'—'}</td>
-      <td style="background:#f5f5f5;color:#aaa;font-size:11px;">↓ expand</td>
+      <td style="background:#f5f5f5;color:#aaa;font-size:11px;">↓ expand</td><td class="recorded" style="background:#d6eaf8">${(() => { let t=0; for(const wt of wts) t+=(window._totalHrsMap[estKey(proj,wt)]||0); return t>0?t.toFixed(1)+"h":"—"; })()}</td>
       ${projDayCells}
     </tr>`;
 
@@ -296,6 +309,7 @@ function render() {
           oninput="refreshWt('${safeJs(proj)}','${safeJs(wt)}','${wtid}','${pid}')"
           onchange="saveEst('${safeJs(proj)}','${safeJs(wt)}','${wtid}')" /></td>
         <td id="badge-${wtid}" style="background:#fff5f5;text-align:center;">${daysStr}</td>
+        <td class="recorded">${(window._totalHrsMap[key]||0).toFixed(1)}</td>
         ${wtDayCells}
       </tr>`;
     }
