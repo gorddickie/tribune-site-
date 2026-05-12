@@ -221,7 +221,8 @@ function render() {
       const wtid = safePid(`${proj}-${wt}`);
       const key = estKey(proj,wt);
       const e = estMap[key]||{};
-      const estVal = e.estimated_hours??'';
+      const actualHrs = wtData.total || 0;
+      const estVal = e.estimated_hours ?? (actualHrs > 0 ? actualHrs : '');
       const empVal = e.employees??'';
       const wtColor = wtColors[key];
       const n = calcDays(estVal,empVal);
