@@ -311,6 +311,14 @@ function render() {
   </table>`;
 
   restoreOpenRows(openRows);
+  // On first render, expand all projects by default
+  if(openRows.size === 0) {
+    document.querySelectorAll('.arrow').forEach(arrow => {
+      const pid = arrow.id.replace('arrow-','');
+      arrow.classList.add('open');
+      document.querySelectorAll(`#sec-${pid},[id="wt-${pid}"]`).forEach(r=>r.classList.add('visible'));
+    });
+  }
 }
 
 function toggleWt(pid) {
