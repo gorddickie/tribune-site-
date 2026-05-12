@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tribune - Enter Estimates</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 20px; max-width: 500px; margin: 0 auto; }
+  h2 { color: #2c3e50; margin-bottom: 4px; }
+  p.sub { color: #888; font-size: 13px; margin-top: 0; margin-bottom: 24px; }
+  label { display: block; font-size: 13px; font-weight: 600; color: #444; margin-bottom: 4px; margin-top: 16px; }
+  select, input, textarea { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; background: white; }
+  select:focus, input:focus, textarea:focus { outline: none; border-color: #2980b9; }
+  textarea { height: 80px; resize: vertical; }
+  button { margin-top: 24px; width: 100%; padding: 14px; background: #2c3e50; color: white; border: none; border-radius: 6px; font-size: 15px; font-weight: 600; cursor: pointer; }
+  button:hover { background: #1a252f; }
+  button:disabled { background: #aaa; cursor: not-allowed; }
+  .success { display: none; background: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 16px; border-radius: 6px; margin-top: 16px; text-align: center; font-weight: 600; }
+  .error { display: none; background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; padding: 12px; border-radius: 6px; margin-top: 12px; font-size: 13px; }
+  .nav { margin-bottom: 20px; }
+  .nav a { color: #2980b9; text-decoration: none; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="nav"><a href="/">← Back to Hours Report</a></div>
+<h2>📋 Enter Project Estimate</h2>
+<p class="sub">Fill in the estimated hours for work to be done. This will appear on tomorrow's report.</p>
+
+<form id="estimateForm">
+  <label>Your Name</label>
+  <select name="submitted_by" required>
+    <option value="">— Select your name —</option>
+    <option>Cameron Farmer</option>
+    <option>Darrin Taylor</option>
+    <option>Dave Walsh</option>
+  </select>
+
+  <label>Unit / Project</label>
+  <select name="project" required>
+    <option value="">— Select a project —</option>
+    <option>31 Tribune</option>
+    <option>31 Tribune Unit 5</option>
+    <option>31 Tribune Unit 6</option>
+    <option>31 Tribune Unit 11</option>
+    <option>31 Tribune Unit 12</option>
+    <option>31 Tribune Unit 17</option>
+    <option>31 Tribune Unit 18</option>
+  </select>
+
+  <label>Work Type</label>
+  <select name="work_type" required>
+    <option value="">— Select work type —</option>
+    <option>Cabinet Installs</option>
+    <option>Carpentry</option>
+    <option>Floor Prep</option>
+    <option>Flooring Install</option>
+    <option>Labour Hourly Management</option>
+    <option>Painting</option>
+    <option>Sales</option>
+    <option>Other</option>
+  </select>
+
+  <label>Estimated Hours</label>
+  <input type="number" name="estimated_hours" min="0.5" max="200" step="0.5" placeholder="e.g. 16" required>
+
+  <label>Date (when work is planned)</label>
+  <input type="date" name="planned_date" required>
+
+  <label>Notes (optional)</label>
+  <textarea name="notes" placeholder="Any details about the work..."></textarea>
+
+  <button type="submit" id="submitBtn">Submit Estimate</button>
+  <div class="error" id="errorMsg"></div>
+</form>
+
+<div class="success" id="success">✅ Estimate submitted! It will appear on tomorrow's report.</div>
+
+<script>
+const SUPABASE_URL = 'https://weawcacavolrnmatpbiy.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_9dmAtZvGqBfzv6cVJGVhvA_PnTDB9ip';
+
+document.getElementById('estimateForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  const errorMsg = document.getElementById('errorMsg');
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+  errorMsg.style.display = 'none';
+
+  const data = {
+    submitted_by: this.submitted_by.value,
+    project: this.project.value,
+    work_type: this.work_type.value,
+    estimated_hours: parseFloat(this.estimated_hours.value),
+    planned_date: this.planned_date.value,
+    notes: this.notes.value || null
+  };
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/estimates`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(data)
+    });
+
+    if (res.ok) {
+      document.getElementById('estimateForm').style.display = 'none';
+      document.getElementById('success').style.display = 'block';
+    } else {
+      const err = await res.text();
+      throw new Error(err);
+    }
+  } catch(err) {
+    btn.disabled = false;
+    btn.textContent = 'Submit Estimate';
+    errorMsg.textContent = 'Error submitting. Please try again.';
+    errorMsg.style.display = 'block';
+    console.error(err);
+  }
+});
+</script>
+</body>
+</html>

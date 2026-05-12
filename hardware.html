@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hardware Selection — Duel Construction</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f4f5f7;
+      color: #222;
+      min-height: 100vh;
+    }
+    header {
+      background: #1a1a2e;
+      color: white;
+      padding: 32px;
+      text-align: center;
+    }
+    header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+    header p { font-size: 1rem; color: #aaa; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+      max-width: 800px;
+      margin: 48px auto;
+      padding: 0 24px;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.15s, box-shadow 0.15s;
+      display: block;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 32px rgba(0,0,0,0.15);
+    }
+    .card-banner {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+    }
+    .kitchen-banner { background: linear-gradient(135deg, #1a1a1a, #3a3a3a); }
+    .bathroom-banner { background: linear-gradient(135deg, #c0c0c0, #e8e8e8); }
+    .card-body { padding: 24px; }
+    .card-body h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
+    .card-body p { font-size: 0.9rem; color: #666; line-height: 1.6; margin-bottom: 16px; }
+    .card-meta { display: flex; gap: 10px; flex-wrap: wrap; }
+    .pill {
+      background: #f0f0f0;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #444;
+    }
+    .pill-black { background: #1a1a1a; color: white; }
+    .pill-chrome { background: #e0e0e0; color: #333; }
+    .arrow {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #0066c0;
+    }
+    footer { text-align: center; padding: 32px; color: #aaa; font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🔩 Duel Construction — Hardware Selection</h1>
+  <p>31 Tribune · 6 Units · Halifax, NS</p>
+</header>
+
+<div class="cards">
+  <a class="card" href="hardware-kitchen.html">
+    <div class="card-banner kitchen-banner">🍳</div>
+    <div class="card-body">
+      <h2>Kitchen Hardware</h2>
+      <p>Matte black straight bar pulls for cabinet doors and drawers. Vendor comparison with pricing for 126 pieces across 6 units.</p>
+      <div class="card-meta">
+        <span class="pill pill-black">Matte Black</span>
+        <span class="pill">126 pieces</span>
+        <span class="pill">6 vendors</span>
+      </div>
+      <div class="arrow">View Kitchen Options →</div>
+    </div>
+  </a>
+
+  <a class="card" href="hardware-bathroom.html">
+    <div class="card-banner bathroom-banner">🚿</div>
+    <div class="card-body">
+      <h2>Bathroom Hardware</h2>
+      <p>Chrome faucets, towel rack kits, and door pulls. Matching sets for a consistent look across all 6 units.</p>
+      <div class="card-meta">
+        <span class="pill pill-chrome">Chrome</span>
+        <span class="pill">6 faucets</span>
+        <span class="pill">6 towel kits</span>
+        <span class="pill">12 door pulls</span>
+      </div>
+      <div class="arrow">View Bathroom Options →</div>
+    </div>
+  </a>
+</div>
+
+<footer>
+  Duel Construction · Charlie 🦞 · Hardware Selection Guide
+</footer>
+
+</body>
+</html>
