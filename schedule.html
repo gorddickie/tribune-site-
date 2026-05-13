@@ -54,11 +54,40 @@
   .btn { display: inline-block; margin-top: 16px; margin-right: 10px; background: #2c3e50; color: white; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600; }
   #loading { color: #999; font-size: 14px; margin-top: 20px; }
   #status { font-size: 11px; color: #aaa; margin-top: 8px; }
+  .help-box { background: white; border: 1px solid #dde; border-radius: 8px; padding: 14px 18px; margin-bottom: 16px; font-size: 13px; color: #444; box-shadow: 0 1px 3px rgba(0,0,0,0.07); max-width: 700px; }
+  .help-box summary { font-weight: 700; color: #2c3e50; cursor: pointer; font-size: 14px; }
+  .help-box summary:hover { color: #2980b9; }
+  .help-box h4 { margin: 12px 0 4px; color: #2c3e50; font-size: 13px; }
+  .help-box ul { margin: 4px 0 8px 18px; padding: 0; line-height: 1.7; }
+  .help-box ol { margin: 4px 0 8px 18px; padding: 0; line-height: 1.7; }
+  .help-box p { margin: 6px 0; }
 </style>
 </head>
 <body>
 <h2>🗓️ Tribune Schedule Planner</h2>
 <p class="hint">Click a project to expand work types. Enter hours + employees per work type, then drag the red badge onto the calendar to schedule.</p>
+
+<details class="help-box">
+  <summary>ℹ️ How to use this planner</summary>
+  <h4>What it does</h4>
+  <p>The Schedule Planner helps you map out when different types of work will happen on each project — and automatically calculates how long each phase will take based on your estimates.</p>
+  <h4>The pieces</h4>
+  <ul>
+    <li><strong>Projects</strong> — the main jobs (e.g. a renovation)</li>
+    <li><strong>Work Types</strong> — the phases within a project (e.g. Framing, Electrical, Tile)</li>
+    <li><strong>Estimates</strong> — total hours and number of employees for each work type. The planner calculates days-to-complete automatically.</li>
+  </ul>
+  <h4>Step by step</h4>
+  <ol>
+    <li><strong>Click a project row</strong> to expand it and see its work types.</li>
+    <li><strong>Enter hours and employees</strong> for each work type. A red badge will appear showing how many business days it'll take.</li>
+    <li><strong>Drag the red badge onto the calendar</strong> to set the start date. The required business days will be highlighted in colour.</li>
+    <li><strong>To reschedule</strong>, drag a highlighted cell to a new start date.</li>
+    <li><strong>To clear a schedule</strong>, click the small ✕ next to the badge.</li>
+  </ol>
+  <h4>The result</h4>
+  <p>A colour-coded calendar showing what work is happening, when, and for how long — calculated automatically from your estimates.</p>
+</details>
 <div style="margin-bottom:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
   <label style="font-size:13px;color:#555;font-weight:600;">📅 Week:</label>
   <select id="week-select" style="padding:7px 12px;border-radius:6px;border:1px solid #ccc;font-size:13px;background:white;cursor:pointer;" onchange="loadWeek(this.value)"><option>Loading...</option></select>
