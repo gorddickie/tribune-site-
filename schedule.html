@@ -262,7 +262,7 @@ function render() {
       ${projDayCells}
     </tr>`;
 
-    bodyRows+=`<tr class="sec-header" id="sec-${pid}"><td colspan="${days.length+4}">Work Types</td></tr>`;
+    bodyRows+=`<tr class="sec-header" id="sec-${pid}"><td colspan="${days.length+5}">Work Types</td></tr>`;
 
     for(const [wt,wtData] of Object.entries(snapProjects[proj]||{})) {
       const wtid = safePid(`${proj}-${wt}`);
