@@ -3,18 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tribune Hours Report</title>
+<title>Tribune Hours Report - Week of May 11, 2026</title>
 <style>
-  body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; overflow-x: auto; }
+  body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
   h2 { color: #333; }
-  table { border-collapse: collapse; min-width: 700px; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; }
-  th { background: #2c3e50; color: white; padding: 12px 16px; text-align: right; font-size: 13px; white-space: nowrap; }
+  table { border-collapse: collapse; width: 100%; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; }
+  th { background: #2c3e50; color: white; padding: 12px 16px; text-align: right; font-size: 13px; }
   th:first-child { text-align: left; }
-  th.est-h { background: #1a6b3c; }
-  th.diff-h { background: #7d3c98; }
-  td { padding: 10px 16px; text-align: right; border-bottom: 1px solid #eee; font-size: 13px; white-space: nowrap; }
+  td { padding: 10px 16px; text-align: right; border-bottom: 1px solid #eee; font-size: 13px; }
   td:first-child { text-align: left; }
-  td.est { background: #f0fff4; color: #1a6b3c; font-weight: 600; }
   .project-row { cursor: pointer; }
   .project-row:hover td { background: #e8f4fd; }
   .project-name { font-weight: 600; color: #2980b9; display: flex; align-items: center; gap: 8px; }
@@ -22,51 +19,112 @@
   .arrow.open { transform: rotate(90deg); }
   .detail-row { display: none; background: #f8f9fa; }
   .detail-row.visible { display: table-row; }
-  .detail-row td { padding: 6px 16px 6px 32px; font-size: 12px; color: #555; border-bottom: 1px solid #f0f0f0; }
-  .detail-row td:first-child { padding-left: 36px; }
-  .section-header td { background: #ecf0f1 !important; font-weight: bold; font-size: 11px; color: #7f8c8d; text-transform: uppercase; letter-spacing: 0.5px; padding: 5px 16px 5px 24px !important; }
+  .detail-row td { padding: 6px 16px 6px 40px; font-size: 12px; color: #555; border-bottom: 1px solid #f0f0f0; }
+  .detail-row td:first-child { padding-left: 40px; }
+  .section-header td { background: #ecf0f1; font-weight: bold; font-size: 11px; color: #7f8c8d; text-transform: uppercase; letter-spacing: 0.5px; padding: 5px 16px 5px 28px; }
   tr.total-row td { background: #2c3e50; color: white; font-weight: bold; border: none; }
-  tr.total-row td.est { background: #1a6b3c; color: white; }
   .zero { color: #ddd; }
-  .over { color: #e74c3c; font-weight: 600; }
-  .under { color: #27ae60; font-weight: 600; }
   .high { color: #e74c3c; font-weight: bold; }
+  .med { color: #e67e22; }
   p.hint { color: #aaa; font-size: 12px; margin-top: 4px; }
-  .btn { display: inline-block; margin-top: 16px; background: #2c3e50; color: white; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600; }
-  .updated { color: #aaa; font-size: 11px; margin-top: 8px; }
-  #loading { color: #999; font-size: 14px; margin-top: 40px; }
-  #error { color: #e74c3c; font-size: 14px; margin-top: 20px; display: none; }
-  .week-selector { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
-  .week-selector label { font-size: 13px; color: #555; font-weight: 600; }
-  .week-selector select { padding: 7px 12px; border-radius: 6px; border: 1px solid #ccc; font-size: 13px; background: white; cursor: pointer; }
-  .week-selector button { padding: 7px 14px; border-radius: 6px; border: none; background: #2c3e50; color: white; font-size: 13px; font-weight: 600; cursor: pointer; }
-  .week-selector button:hover { background: #3d5166; }
 </style>
 </head>
 <body>
-<h2 id="title">🏗️ Tribune Projects — Loading...</h2>
-<div class="week-selector">
-  <label>📅 Week:</label>
-  <select id="week-select" onchange="loadWeek(this.value)"><option>Loading...</option></select>
-</div>
+<h2>🏗️ Tribune Projects — Hours This Week (May 11–14, 2026)</h2>
 <p class="hint">👆 Click a project row to see work type and employee breakdown</p>
-<div id="loading">⏳ Fetching latest hours from Supabase...</div>
-<div id="error">❌ Failed to load data. Please try refreshing.</div>
-<div id="table-container"></div>
-<a href="./estimates.html" class="btn">📋 Enter Estimate</a>
-<p class="updated" id="updated"></p>
+<table>
+  <thead>
+    <tr>
+      <th>Project</th>
+      <th>Mon 5/11</th><th>Tue 5/12</th><th>Wed 5/13</th><th>Thu 5/14</th>
+      <th>TOTAL</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr class="project-row" onclick="toggle('p0')">
+      <td><span class="project-name"><span class="arrow" id="arrow-p0">▶</span> 31 Tribune</span></td>
+      <td class="high">18.52</td><td>3.25</td><td>5.50</td><td class="zero">—</td><td class="med">27.27</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-p0-wth"><td colspan="6">Work Types</td></tr>
+    <tr class="detail-row" id="detail-p0-wt0"><td>Labour Hourly Management</td><td>8.50</td><td class="zero">—</td><td>3.50</td><td class="zero">—</td><td>12.00</td></tr>
+    <tr class="detail-row" id="detail-p0-wt1"><td>Painting</td><td>8.02</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td>8.02</td></tr>
+    <tr class="detail-row" id="detail-p0-wt2"><td>Sales</td><td>2.00</td><td>3.25</td><td>2.00</td><td class="zero">—</td><td>7.25</td></tr>
+    <tr class="detail-row section-header" id="detail-p0-emph"><td colspan="6">Employees</td></tr>
+    <tr class="detail-row" id="detail-p0-em0"><td>Cameron Farmer</td><td>8.50</td><td class="zero">—</td><td>3.50</td><td class="zero">—</td><td>12.00</td></tr>
+    <tr class="detail-row" id="detail-p0-em1"><td>Darrin Walsh</td><td>2.00</td><td>3.25</td><td>2.00</td><td class="zero">—</td><td>7.25</td></tr>
+    <tr class="detail-row" id="detail-p0-em2"><td>Ihor Solodko</td><td>8.02</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td>8.02</td></tr>
+
+    <tr class="project-row" onclick="toggle('p1')">
+      <td><span class="project-name"><span class="arrow" id="arrow-p1">▶</span> 31 Tribune Laundry Room</span></td>
+      <td class="zero">—</td><td>8.37</td><td class="zero">—</td><td class="zero">—</td><td>8.37</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-p1-wth"><td colspan="6">Work Types</td></tr>
+    <tr class="detail-row" id="detail-p1-wt0"><td>Door Installation</td><td class="zero">—</td><td>8.37</td><td class="zero">—</td><td class="zero">—</td><td>8.37</td></tr>
+    <tr class="detail-row section-header" id="detail-p1-emph"><td colspan="6">Employees</td></tr>
+    <tr class="detail-row" id="detail-p1-em0"><td>Mikhail Yakshin</td><td class="zero">—</td><td>8.37</td><td class="zero">—</td><td class="zero">—</td><td>8.37</td></tr>
+
+    <tr class="project-row" onclick="toggle('p2')">
+      <td><span class="project-name"><span class="arrow" id="arrow-p2">▶</span> 31 Tribune Level 1 Hallway</span></td>
+      <td class="zero">—</td><td class="zero">—</td><td class="high">20.63</td><td class="zero">—</td><td class="med">20.63</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-p2-wth"><td colspan="6">Work Types</td></tr>
+    <tr class="detail-row" id="detail-p2-wt0"><td>Carpentry</td><td class="zero">—</td><td class="zero">—</td><td>4.50</td><td class="zero">—</td><td>4.50</td></tr>
+    <tr class="detail-row" id="detail-p2-wt1"><td>Door Hardware Install</td><td class="zero">—</td><td class="zero">—</td><td>8.08</td><td class="zero">—</td><td>8.08</td></tr>
+    <tr class="detail-row" id="detail-p2-wt2"><td>Door Installation</td><td class="zero">—</td><td class="zero">—</td><td>8.05</td><td class="zero">—</td><td>8.05</td></tr>
+    <tr class="detail-row section-header" id="detail-p2-emph"><td colspan="6">Employees</td></tr>
+    <tr class="detail-row" id="detail-p2-em0"><td>Cameron Farmer</td><td class="zero">—</td><td class="zero">—</td><td>4.50</td><td class="zero">—</td><td>4.50</td></tr>
+    <tr class="detail-row" id="detail-p2-em1"><td>Ihor Vonsovych</td><td class="zero">—</td><td class="zero">—</td><td>8.08</td><td class="zero">—</td><td>8.08</td></tr>
+    <tr class="detail-row" id="detail-p2-em2"><td>Mikhail Yakshin</td><td class="zero">—</td><td class="zero">—</td><td>8.05</td><td class="zero">—</td><td>8.05</td></tr>
+
+    <tr class="project-row" onclick="toggle('p3')">
+      <td><span class="project-name"><span class="arrow" id="arrow-p3">▶</span> 31 Tribune Level 3 Hallway</span></td>
+      <td class="high">16.05</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td>16.05</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-p3-wth"><td colspan="6">Work Types</td></tr>
+    <tr class="detail-row" id="detail-p3-wt0"><td>Door Hardware Install</td><td class="high">16.05</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td>16.05</td></tr>
+    <tr class="detail-row section-header" id="detail-p3-emph"><td colspan="6">Employees</td></tr>
+    <tr class="detail-row" id="detail-p3-em0"><td>Ihor Vonsovych</td><td>8.03</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td>8.03</td></tr>
+    <tr class="detail-row" id="detail-p3-em1"><td>Oleksandr Zholtikov</td><td>8.02</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td>8.02</td></tr>
+
+    <tr class="project-row" onclick="toggle('p4')">
+      <td><span class="project-name"><span class="arrow" id="arrow-p4">▶</span> 31 Tribune Unit 12</span></td>
+      <td>2.97</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td>2.97</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-p4-wth"><td colspan="6">Work Types</td></tr>
+    <tr class="detail-row" id="detail-p4-wt0"><td>Cabinet Installs</td><td>2.97</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td>2.97</td></tr>
+    <tr class="detail-row section-header" id="detail-p4-emph"><td colspan="6">Employees</td></tr>
+    <tr class="detail-row" id="detail-p4-em0"><td>Adam Brewer</td><td>2.97</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td>2.97</td></tr>
+
+    <tr class="project-row" onclick="toggle('p5')">
+      <td><span class="project-name"><span class="arrow" id="arrow-p5">▶</span> 31 Tribune Unit 18</span></td>
+      <td>5.13</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td>5.13</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-p5-wth"><td colspan="6">Work Types</td></tr>
+    <tr class="detail-row" id="detail-p5-wt0"><td>Cabinet Installs</td><td>5.13</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td>5.13</td></tr>
+    <tr class="detail-row section-header" id="detail-p5-emph"><td colspan="6">Employees</td></tr>
+    <tr class="detail-row" id="detail-p5-em0"><td>Adam Brewer</td><td>5.13</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td>5.13</td></tr>
+
+    <tr class="project-row" onclick="toggle('p6')">
+      <td><span class="project-name"><span class="arrow" id="arrow-p6">▶</span> 31 Tribune Unit 6</span></td>
+      <td>8.02</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td>8.02</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-p6-wth"><td colspan="6">Work Types</td></tr>
+    <tr class="detail-row" id="detail-p6-wt0"><td>Floor Prep</td><td>8.02</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td>8.02</td></tr>
+    <tr class="detail-row section-header" id="detail-p6-emph"><td colspan="6">Employees</td></tr>
+    <tr class="detail-row" id="detail-p6-em0"><td>Mikhail Yakshin</td><td>8.02</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td>8.02</td></tr>
+
+  </tbody>
+  <tfoot>
+    <tr class="total-row">
+      <td>TOTAL</td>
+      <td class="high">50.68</td><td class="med">11.62</td><td class="high">26.13</td><td class="zero">—</td><td class="high">88.43</td>
+    </tr>
+  </tfoot>
+</table>
+<p style="color:#aaa; font-size:12px; margin-top:12px;">Generated by Charlie 🦞 — May 14, 2026</p>
 
 <script>
-const SUPABASE_URL = 'https://weawcacavolrnmatpbiy.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_9dmAtZvGqBfzv6cVJGVhvA_PnTDB9ip';
-
-function fmt(v) { return v > 0 ? v.toFixed(2) : '—'; }
-function cls(v) {
-  if (v <= 0) return 'zero';
-  if (v >= 15) return 'high';
-  return '';
-}
-
 function toggle(id) {
   const arrow = document.getElementById('arrow-' + id);
   const rows = document.querySelectorAll('[id^="detail-' + id + '"]');
@@ -74,161 +132,6 @@ function toggle(id) {
   arrow.classList.toggle('open');
   rows.forEach(r => r.classList.toggle('visible', !isOpen));
 }
-
-function fmtDate(d) {
-  const dt = new Date(d + 'T00:00:00');
-  return dt.toLocaleDateString('en-US', { weekday: 'short', month: '2-digit', day: '2-digit' });
-}
-
-function fmtLabel(d) {
-  const dt = new Date(d + 'T00:00:00');
-  return dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-}
-
-async function load() {
-  try {
-    // Fetch all available weeks for the selector
-    const resp = await fetch(
-      `${SUPABASE_URL}/rest/v1/hours_snapshots?select=id,week_start,week_end,generated_at&order=week_start.desc`,
-      { headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` } }
-    );
-    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-    const rows = await resp.json();
-    if (!rows.length) throw new Error('No data found');
-
-    // Dedupe by week_start, keep latest generated_at per week
-    const weekMap = {};
-    for (const r of rows) {
-      if (!weekMap[r.week_start] || r.generated_at > weekMap[r.week_start].generated_at)
-        weekMap[r.week_start] = r;
-    }
-    const weeks = Object.values(weekMap).sort((a,b) => b.week_start.localeCompare(a.week_start));
-
-    // Populate selector
-    const sel = document.getElementById('week-select');
-    sel.innerHTML = weeks.map(w => {
-      const label = `${fmtLabel(w.week_start)} – ${fmtLabel(w.week_end)}`;
-      return `<option value="${w.week_start}">${label}</option>`;
-    }).join('');
-
-    await loadWeek(weeks[0].week_start);
-  } catch (e) {
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('error').style.display = 'block';
-    document.getElementById('error').textContent = '❌ Failed to load data: ' + e.message;
-  }
-}
-
-async function loadWeek(weekStart) {
-  document.getElementById('loading').style.display = 'block';
-  document.getElementById('table-container').innerHTML = '';
-  document.getElementById('week-select').value = weekStart;
-  try {
-    const resp = await fetch(
-      `${SUPABASE_URL}/rest/v1/hours_snapshots?week_start=eq.${weekStart}&order=generated_at.desc&limit=1`,
-      { headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` } }
-    );
-    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-    const rows = await resp.json();
-    if (!rows.length) throw new Error('No data for that week');
-    render(rows[0].data);
-  } catch (e) {
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('error').style.display = 'block';
-    document.getElementById('error').textContent = '❌ ' + e.message;
-  }
-}
-
-function render(snap) {
-  document.getElementById('loading').style.display = 'none';
-
-  const dates = snap.dates;
-  const projects = snap.projects;
-  const colCount = dates.length + 4;
-
-  // Title
-  const startLabel = fmtLabel(snap.week_start);
-  const endLabel = fmtLabel(snap.week_end) + ', ' + snap.week_end.slice(0, 4);
-  document.getElementById('title').textContent = `🏗️ Tribune Projects — ${startLabel} – ${endLabel}`;
-
-  // Updated
-  const genAt = new Date(snap.generated_at);
-  document.getElementById('updated').textContent =
-    `Last updated: ${genAt.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} ${genAt.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })} · Generated by Charlie 🦞`;
-
-  // Build table
-  const headers = dates.map(d => `<th>${fmtDate(d)}</th>`).join('');
-
-  let bodyRows = '';
-  let totalCells = dates.map(d => {
-    const t = projects.reduce((s, p) => s + (p.hours_by_date[d] || 0), 0);
-    return `<td>${fmt(t)}</td>`;
-  }).join('');
-  const grandTotal = projects.reduce((s, p) => s + p.total, 0);
-  const totalEst = projects.reduce((s, p) => s + (p.estimate || 0), 0);
-  const totalVar = totalEst > 0 ? grandTotal - totalEst : null;
-  const totalVarStr = totalVar === null ? '—' : (totalVar > 0 ? `+${totalVar.toFixed(2)}` : totalVar.toFixed(2));
-  const totalVarCls = totalVar === null ? 'zero' : (totalVar > 0 ? 'over' : (totalVar < 0 ? 'under' : 'zero'));
-
-  for (const proj of projects) {
-    const pid = proj.name.toLowerCase().replace(/[\s/]+/g, '-');
-    const cells = dates.map(d => {
-      const v = proj.hours_by_date[d] || 0;
-      const c = cls(v);
-      return `<td${c ? ` class="${c}"` : ''}>${fmt(v)}</td>`;
-    }).join('');
-    const tc = cls(proj.total);
-    const est = proj.estimate || 0;
-    const varVal = proj.variance;
-    const varStr = varVal === null || varVal === undefined ? '—' : (varVal > 0 ? `+${varVal.toFixed(2)}` : varVal.toFixed(2));
-    const varCls = varVal === null || varVal === undefined ? 'zero' : (varVal > 0 ? 'over' : (varVal < 0 ? 'under' : 'zero'));
-
-    bodyRows += `
-    <tr class="project-row" onclick="toggle('${pid}')">
-      <td><span class="project-name"><span class="arrow" id="arrow-${pid}">▶</span> ${proj.name}</span></td>
-      ${cells}<td class="est">${fmt(est)}</td><td${tc ? ` class="${tc}"` : ''}>${fmt(proj.total)}</td><td class="${varCls}">${varStr}</td>
-    </tr>`;
-
-    // Work types
-    bodyRows += `<tr class="detail-row section-header" id="detail-${pid}-wh"><td colspan="${colCount}">Work Types</td></tr>`;
-    let wi = 0;
-    for (const [wt, wtData] of Object.entries(proj.worktypes || {})) {
-      const wtCells = dates.map(d => {
-        const v = wtData.hours_by_date[d] || 0;
-        const c = cls(v);
-        return `<td${c ? ` class="${c}"` : ''}>${fmt(v)}</td>`;
-      }).join('');
-      const wtEst = wtData.estimate || 0;
-      const wtVar = wtEst > 0 ? wtData.total - wtEst : null;
-      const wtVarStr = wtVar === null ? '—' : (wtVar > 0 ? `+${wtVar.toFixed(2)}` : wtVar.toFixed(2));
-      const wtVarCls = wtVar === null ? 'zero' : (wtVar > 0 ? 'over' : (wtVar < 0 ? 'under' : 'zero'));
-      bodyRows += `<tr class="detail-row" id="detail-${pid}-w${wi}"><td>${wt}</td>${wtCells}<td class="est">${fmt(wtEst)}</td><td>${fmt(wtData.total)}</td><td class="${wtVarCls}">${wtVarStr}</td></tr>`;
-      wi++;
-    }
-
-    // Employees
-    bodyRows += `<tr class="detail-row section-header" id="detail-${pid}-eh"><td colspan="${colCount}">Employees</td></tr>`;
-    let ei = 0;
-    for (const [emp, empData] of Object.entries(proj.employees || {})) {
-      const wtStr = Object.entries(empData.worktypes).map(([wt, h]) => `${wt}: ${h}h`).join(', ');
-      const blanks = '<td class="zero">—</td>'.repeat(dates.length);
-      bodyRows += `<tr class="detail-row" id="detail-${pid}-e${ei}"><td>${emp} <small style="color:#999">(${wtStr})</small></td>${blanks}<td class="zero">—</td><td>${fmt(empData.total)}</td><td class="zero">—</td></tr>`;
-      ei++;
-    }
-  }
-
-  const html = `
-  <table>
-    <thead><tr><th>Project</th>${headers}<th class="est-h">ESTIMATE</th><th>ACTUAL</th><th class="diff-h">+/-</th></tr></thead>
-    <tbody>${bodyRows}</tbody>
-    <tfoot><tr class="total-row"><td>TOTAL</td>${totalCells}<td class="est">${fmt(totalEst)}</td><td>${fmt(grandTotal)}</td><td class="${totalVarCls}">${totalVarStr}</td></tr></tfoot>
-  </table>`;
-
-  document.getElementById('table-container').innerHTML = html;
-  window.toggle = toggle;
-}
-
-load();
 </script>
 </body>
 </html>
