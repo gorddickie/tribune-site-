@@ -2,7 +2,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Tribune Hours Report - Week of May 11, 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tribune Hours — Week of May 11, 2026</title>
 <style>
   body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
   h2 { color: #333; }
@@ -18,112 +19,118 @@
   .arrow.open { transform: rotate(90deg); }
   .detail-row { display: none; background: #f8f9fa; }
   .detail-row.visible { display: table-row; }
-  .detail-row td { padding: 6px 16px 6px 40px; font-size: 12px; color: #555; border-bottom: 1px solid #f0f0f0; }
-  .detail-row td:first-child { padding-left: 40px; }
+  .detail-row td { padding: 6px 16px; font-size: 12px; color: #555; border-bottom: 1px solid #f0f0f0; }
+  .indent { padding-left: 40px !important; }
   .section-header td { background: #ecf0f1; font-weight: bold; font-size: 11px; color: #7f8c8d; text-transform: uppercase; letter-spacing: 0.5px; padding: 5px 16px 5px 28px; }
   tr.total-row td { background: #2c3e50; color: white; font-weight: bold; border: none; }
   .zero { color: #ddd; }
   .high { color: #e74c3c; font-weight: bold; }
   .med { color: #e67e22; }
   p.hint { color: #aaa; font-size: 12px; margin-top: 4px; }
+  p.footer { color: #aaa; font-size: 12px; margin-top: 12px; }
 </style>
 </head>
 <body>
-<h2>🏗️ Tribune Projects — Hours This Week (May 11–15, 2026)</h2>
+<h2>🏗️ Tribune Projects — Hours This Week (May 11–16, 2026)</h2>
 <p class="hint">👆 Click a project row to see work type and employee breakdown</p>
 <table>
   <thead>
     <tr>
       <th>Project</th>
-      <th>Mon 5/11</th><th>Tue 5/12</th><th>Wed 5/13</th><th>Thu 5/14</th><th>Fri 5/15</th>
+      <th>Mon 5/11</th><th>Tue 5/12</th><th>Wed 5/13</th><th>Thu 5/14</th><th>Fri 5/15</th><th>Sat 5/16</th>
       <th>TOTAL</th>
     </tr>
   </thead>
   <tbody>
-    <tr class="project-row" onclick="toggle('31_tribune')">
-      <td><span class="project-name"><span class="arrow" id="arrow-31_tribune">▶</span> 31 Tribune</span></td>
-      <td><span class="high">18.52</span></td><td><span>3.25</span></td><td><span>5.50</span></td><td><span>4.78</span></td><td><span class="zero">—</span></td><td><span class="high">32.05</span></td>
+    
+    <tr class="project-row" onclick="toggle('p0')">
+      <td><span class="project-name"><span class="arrow" id="arrow-p0">▶</span> 31 Tribune</span></td>
+      <td class="high">18.52</td><td class="med">11.25</td><td>5.50</td><td>4.78</td><td class="zero">—</td><td class="zero">—</td><td class="high">40.05</td>
     </tr>
-    <tr class="detail-row section-header" id="detail-31_tribune-wt_header"><td colspan="8">Work Types</td></tr>
-    <tr class="detail-row" id="detail-31_tribune-wt_0"><td>Labour Hourly Management</td><td><span>8.50</span></td><td><span class="zero">—</span></td><td><span>3.50</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="med">12.00</span></td></tr>
-    <tr class="detail-row" id="detail-31_tribune-wt_1"><td>Landscaping</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>1.78</span></td><td><span class="zero">—</span></td><td><span>1.78</span></td></tr>
-    <tr class="detail-row" id="detail-31_tribune-wt_2"><td>Painting</td><td><span>8.02</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>8.02</span></td></tr>
-    <tr class="detail-row" id="detail-31_tribune-wt_3"><td>Sales</td><td><span>2.00</span></td><td><span>3.25</span></td><td><span>2.00</span></td><td><span>3.00</span></td><td><span class="zero">—</span></td><td><span class="med">10.25</span></td></tr>
-    <tr class="detail-row section-header" id="detail-31_tribune-emp_header"><td colspan="8">Employees</td></tr>
-    <tr class="detail-row" id="detail-31_tribune-emp_0"><td>Adam Brewer</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>1.78</span></td><td><span class="zero">—</span></td><td><span>1.78</span></td></tr>
-    <tr class="detail-row" id="detail-31_tribune-emp_1"><td>Cameron Farmer</td><td><span>8.50</span></td><td><span class="zero">—</span></td><td><span>3.50</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="med">12.00</span></td></tr>
-    <tr class="detail-row" id="detail-31_tribune-emp_2"><td>Darrin Walsh</td><td><span>2.00</span></td><td><span>3.25</span></td><td><span>2.00</span></td><td><span>3.00</span></td><td><span class="zero">—</span></td><td><span class="med">10.25</span></td></tr>
-    <tr class="detail-row" id="detail-31_tribune-emp_3"><td>Ihor Solodko</td><td><span>8.02</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>8.02</span></td></tr>
-    <tr class="project-row" onclick="toggle('31_tribune_laundry_room')">
-      <td><span class="project-name"><span class="arrow" id="arrow-31_tribune_laundry_room">▶</span> 31 Tribune Laundry Room</span></td>
-      <td><span class="zero">—</span></td><td><span>8.37</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>8.37</span></td>
+    <tr class="detail-row section-header" id="detail-p0-wth"><td colspan="8">Work Types</td></tr>
+    <tr class="detail-row" id="detail-p0-wt0"><td class="indent">Cabinet Installs</td><td><span class="zero">—</span></td><td>8.00</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>8.00</td></tr>
+    <tr class="detail-row" id="detail-p0-wt1"><td class="indent">Labour Hourly Management</td><td>8.50</td><td><span class="zero">—</span></td><td>3.50</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>12.00</td></tr>
+    <tr class="detail-row" id="detail-p0-wt2"><td class="indent">Landscaping</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>1.78</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>1.78</td></tr>
+    <tr class="detail-row" id="detail-p0-wt3"><td class="indent">Painting</td><td>8.02</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>8.02</td></tr>
+    <tr class="detail-row" id="detail-p0-wt4"><td class="indent">Sales</td><td>2.00</td><td>3.25</td><td>2.00</td><td>3.00</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>10.25</td></tr>
+    <tr class="detail-row section-header" id="detail-p0-emph"><td colspan="8">Employees</td></tr>
+    <tr class="detail-row" id="detail-p0-emp0"><td class="indent">Adam Brewer</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>1.78</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>1.78</td></tr>
+    <tr class="detail-row" id="detail-p0-emp1"><td class="indent">Cameron Farmer</td><td>8.50</td><td>8.00</td><td>3.50</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>20.00</td></tr>
+    <tr class="detail-row" id="detail-p0-emp2"><td class="indent">Darrin Walsh</td><td>2.00</td><td>3.25</td><td>2.00</td><td>3.00</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>10.25</td></tr>
+    <tr class="detail-row" id="detail-p0-emp3"><td class="indent">Ihor Solodko</td><td>8.02</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>8.02</td></tr>
+    <tr class="project-row" onclick="toggle('p1')">
+      <td><span class="project-name"><span class="arrow" id="arrow-p1">▶</span> 31 Tribune Laundry Room</span></td>
+      <td class="zero">—</td><td>8.37</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td>8.37</td>
     </tr>
-    <tr class="detail-row section-header" id="detail-31_tribune_laundry_room-wt_header"><td colspan="8">Work Types</td></tr>
-    <tr class="detail-row" id="detail-31_tribune_laundry_room-wt_0"><td>Construction</td><td><span class="zero">—</span></td><td><span>8.37</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>8.37</span></td></tr>
-    <tr class="detail-row section-header" id="detail-31_tribune_laundry_room-emp_header"><td colspan="8">Employees</td></tr>
-    <tr class="detail-row" id="detail-31_tribune_laundry_room-emp_0"><td>Mikhail Yakshin</td><td><span class="zero">—</span></td><td><span>8.37</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>8.37</span></td></tr>
-    <tr class="project-row" onclick="toggle('31_tribune_level_1_hallway')">
-      <td><span class="project-name"><span class="arrow" id="arrow-31_tribune_level_1_hallway">▶</span> 31 Tribune Level 1 Hallway</span></td>
-      <td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="high">20.63</span></td><td><span class="high">16.02</span></td><td><span class="zero">—</span></td><td><span class="high">36.65</span></td>
+    <tr class="detail-row section-header" id="detail-p1-wth"><td colspan="8">Work Types</td></tr>
+    <tr class="detail-row" id="detail-p1-wt0"><td class="indent">Construction</td><td><span class="zero">—</span></td><td>8.37</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>8.37</td></tr>
+    <tr class="detail-row section-header" id="detail-p1-emph"><td colspan="8">Employees</td></tr>
+    <tr class="detail-row" id="detail-p1-emp0"><td class="indent">Mikhail Yakshin</td><td><span class="zero">—</span></td><td>8.37</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>8.37</td></tr>
+    <tr class="project-row" onclick="toggle('p2')">
+      <td><span class="project-name"><span class="arrow" id="arrow-p2">▶</span> 31 Tribune Level 1 Hallway</span></td>
+      <td class="zero">—</td><td class="zero">—</td><td class="high">20.63</td><td class="high">16.02</td><td class="zero">—</td><td class="zero">—</td><td class="high">36.65</td>
     </tr>
-    <tr class="detail-row section-header" id="detail-31_tribune_level_1_hallway-wt_header"><td colspan="8">Work Types</td></tr>
-    <tr class="detail-row" id="detail-31_tribune_level_1_hallway-wt_0"><td>Carpentry</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>4.50</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>4.50</span></td></tr>
-    <tr class="detail-row" id="detail-31_tribune_level_1_hallway-wt_1"><td>Construction</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>8.05</span></td><td><span>8.02</span></td><td><span class="zero">—</span></td><td><span class="high">16.07</span></td></tr>
-    <tr class="detail-row" id="detail-31_tribune_level_1_hallway-wt_2"><td>Door Hardware Install</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>8.08</span></td><td><span>8.00</span></td><td><span class="zero">—</span></td><td><span class="high">16.08</span></td></tr>
-    <tr class="detail-row section-header" id="detail-31_tribune_level_1_hallway-emp_header"><td colspan="8">Employees</td></tr>
-    <tr class="detail-row" id="detail-31_tribune_level_1_hallway-emp_0"><td>Cameron Farmer</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>4.50</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>4.50</span></td></tr>
-    <tr class="detail-row" id="detail-31_tribune_level_1_hallway-emp_1"><td>Ihor Vonsovych</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>8.08</span></td><td><span>8.00</span></td><td><span class="zero">—</span></td><td><span class="high">16.08</span></td></tr>
-    <tr class="detail-row" id="detail-31_tribune_level_1_hallway-emp_2"><td>Mikhail Yakshin</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>8.05</span></td><td><span>8.02</span></td><td><span class="zero">—</span></td><td><span class="high">16.07</span></td></tr>
-    <tr class="project-row" onclick="toggle('31_tribune_level_3_hallway')">
-      <td><span class="project-name"><span class="arrow" id="arrow-31_tribune_level_3_hallway">▶</span> 31 Tribune Level 3 Hallway</span></td>
-      <td><span class="high">16.05</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="high">16.05</span></td>
+    <tr class="detail-row section-header" id="detail-p2-wth"><td colspan="8">Work Types</td></tr>
+    <tr class="detail-row" id="detail-p2-wt0"><td class="indent">Carpentry</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>4.50</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>4.50</td></tr>
+    <tr class="detail-row" id="detail-p2-wt1"><td class="indent">Construction</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>8.05</td><td>8.02</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>16.07</td></tr>
+    <tr class="detail-row" id="detail-p2-wt2"><td class="indent">Door Hardware Install</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>8.08</td><td>8.00</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>16.08</td></tr>
+    <tr class="detail-row section-header" id="detail-p2-emph"><td colspan="8">Employees</td></tr>
+    <tr class="detail-row" id="detail-p2-emp0"><td class="indent">Cameron Farmer</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>4.50</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>4.50</td></tr>
+    <tr class="detail-row" id="detail-p2-emp1"><td class="indent">Ihor Vonsovych</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>8.08</td><td>8.00</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>16.08</td></tr>
+    <tr class="detail-row" id="detail-p2-emp2"><td class="indent">Mikhail Yakshin</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>8.05</td><td>8.02</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>16.07</td></tr>
+    <tr class="project-row" onclick="toggle('p3')">
+      <td><span class="project-name"><span class="arrow" id="arrow-p3">▶</span> 31 Tribune Level 3 Hallway</span></td>
+      <td class="high">16.05</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td class="med">15.12</td><td class="zero">—</td><td class="high">31.17</td>
     </tr>
-    <tr class="detail-row section-header" id="detail-31_tribune_level_3_hallway-wt_header"><td colspan="8">Work Types</td></tr>
-    <tr class="detail-row" id="detail-31_tribune_level_3_hallway-wt_0"><td>Door Hardware Install</td><td><span class="high">16.05</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="high">16.05</span></td></tr>
-    <tr class="detail-row section-header" id="detail-31_tribune_level_3_hallway-emp_header"><td colspan="8">Employees</td></tr>
-    <tr class="detail-row" id="detail-31_tribune_level_3_hallway-emp_0"><td>Ihor Vonsovych</td><td><span>8.03</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>8.03</span></td></tr>
-    <tr class="detail-row" id="detail-31_tribune_level_3_hallway-emp_1"><td>Oleksandr Zholtikov</td><td><span>8.02</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>8.02</span></td></tr>
-    <tr class="project-row" onclick="toggle('31_tribune_unit_12')">
-      <td><span class="project-name"><span class="arrow" id="arrow-31_tribune_unit_12">▶</span> 31 Tribune Unit 12</span></td>
-      <td><span>2.97</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>2.97</span></td>
+    <tr class="detail-row section-header" id="detail-p3-wth"><td colspan="8">Work Types</td></tr>
+    <tr class="detail-row" id="detail-p3-wt0"><td class="indent">Construction</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>7.52</td><td><span class="zero">—</span></td><td>7.52</td></tr>
+    <tr class="detail-row" id="detail-p3-wt1"><td class="indent">Door Hardware Install</td><td>16.05</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>7.60</td><td><span class="zero">—</span></td><td>23.65</td></tr>
+    <tr class="detail-row section-header" id="detail-p3-emph"><td colspan="8">Employees</td></tr>
+    <tr class="detail-row" id="detail-p3-emp0"><td class="indent">Ihor Vonsovych</td><td>8.03</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>8.03</td></tr>
+    <tr class="detail-row" id="detail-p3-emp1"><td class="indent">Mikhail Yakshin</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>7.52</td><td><span class="zero">—</span></td><td>7.52</td></tr>
+    <tr class="detail-row" id="detail-p3-emp2"><td class="indent">Oleksandr Zholtikov</td><td>8.02</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>7.60</td><td><span class="zero">—</span></td><td>15.62</td></tr>
+    <tr class="project-row" onclick="toggle('p4')">
+      <td><span class="project-name"><span class="arrow" id="arrow-p4">▶</span> 31 Tribune Unit 12</span></td>
+      <td>2.97</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td>2.97</td>
     </tr>
-    <tr class="detail-row section-header" id="detail-31_tribune_unit_12-wt_header"><td colspan="8">Work Types</td></tr>
-    <tr class="detail-row" id="detail-31_tribune_unit_12-wt_0"><td>Cabinet Installs</td><td><span>2.97</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>2.97</span></td></tr>
-    <tr class="detail-row section-header" id="detail-31_tribune_unit_12-emp_header"><td colspan="8">Employees</td></tr>
-    <tr class="detail-row" id="detail-31_tribune_unit_12-emp_0"><td>Adam Brewer</td><td><span>2.97</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>2.97</span></td></tr>
-    <tr class="project-row" onclick="toggle('31_tribune_unit_18')">
-      <td><span class="project-name"><span class="arrow" id="arrow-31_tribune_unit_18">▶</span> 31 Tribune Unit 18</span></td>
-      <td><span>5.13</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>5.13</span></td>
+    <tr class="detail-row section-header" id="detail-p4-wth"><td colspan="8">Work Types</td></tr>
+    <tr class="detail-row" id="detail-p4-wt0"><td class="indent">Cabinet Installs</td><td>2.97</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>2.97</td></tr>
+    <tr class="detail-row section-header" id="detail-p4-emph"><td colspan="8">Employees</td></tr>
+    <tr class="detail-row" id="detail-p4-emp0"><td class="indent">Adam Brewer</td><td>2.97</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>2.97</td></tr>
+    <tr class="project-row" onclick="toggle('p5')">
+      <td><span class="project-name"><span class="arrow" id="arrow-p5">▶</span> 31 Tribune Unit 18</span></td>
+      <td>5.13</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td>5.13</td>
     </tr>
-    <tr class="detail-row section-header" id="detail-31_tribune_unit_18-wt_header"><td colspan="8">Work Types</td></tr>
-    <tr class="detail-row" id="detail-31_tribune_unit_18-wt_0"><td>Cabinet Installs</td><td><span>5.13</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>5.13</span></td></tr>
-    <tr class="detail-row section-header" id="detail-31_tribune_unit_18-emp_header"><td colspan="8">Employees</td></tr>
-    <tr class="detail-row" id="detail-31_tribune_unit_18-emp_0"><td>Adam Brewer</td><td><span>5.13</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>5.13</span></td></tr>
-    <tr class="project-row" onclick="toggle('31_tribune_unit_6')">
-      <td><span class="project-name"><span class="arrow" id="arrow-31_tribune_unit_6">▶</span> 31 Tribune Unit 6</span></td>
-      <td><span>8.02</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>8.02</span></td>
+    <tr class="detail-row section-header" id="detail-p5-wth"><td colspan="8">Work Types</td></tr>
+    <tr class="detail-row" id="detail-p5-wt0"><td class="indent">Cabinet Installs</td><td>5.13</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>5.13</td></tr>
+    <tr class="detail-row section-header" id="detail-p5-emph"><td colspan="8">Employees</td></tr>
+    <tr class="detail-row" id="detail-p5-emp0"><td class="indent">Adam Brewer</td><td>5.13</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>5.13</td></tr>
+    <tr class="project-row" onclick="toggle('p6')">
+      <td><span class="project-name"><span class="arrow" id="arrow-p6">▶</span> 31 Tribune Unit 6</span></td>
+      <td>8.02</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td>8.02</td>
     </tr>
-    <tr class="detail-row section-header" id="detail-31_tribune_unit_6-wt_header"><td colspan="8">Work Types</td></tr>
-    <tr class="detail-row" id="detail-31_tribune_unit_6-wt_0"><td>Floor Prep</td><td><span>8.02</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>8.02</span></td></tr>
-    <tr class="detail-row section-header" id="detail-31_tribune_unit_6-emp_header"><td colspan="8">Employees</td></tr>
-    <tr class="detail-row" id="detail-31_tribune_unit_6-emp_0"><td>Mikhail Yakshin</td><td><span>8.02</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>8.02</span></td></tr>
-    <tr class="project-row" onclick="toggle('31_tribune_unit_materials')">
-      <td><span class="project-name"><span class="arrow" id="arrow-31_tribune_unit_materials">▶</span> 31 Tribune Unit Materials</span></td>
-      <td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>7.25</span></td><td><span class="zero">—</span></td><td><span>7.25</span></td>
+    <tr class="detail-row section-header" id="detail-p6-wth"><td colspan="8">Work Types</td></tr>
+    <tr class="detail-row" id="detail-p6-wt0"><td class="indent">Floor Prep</td><td>8.02</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>8.02</td></tr>
+    <tr class="detail-row section-header" id="detail-p6-emph"><td colspan="8">Employees</td></tr>
+    <tr class="detail-row" id="detail-p6-emp0"><td class="indent">Mikhail Yakshin</td><td>8.02</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>8.02</td></tr>
+    <tr class="project-row" onclick="toggle('p7')">
+      <td><span class="project-name"><span class="arrow" id="arrow-p7">▶</span> 31 Tribune Unit Materials</span></td>
+      <td class="zero">—</td><td class="zero">—</td><td class="zero">—</td><td>7.25</td><td class="zero">—</td><td class="zero">—</td><td>7.25</td>
     </tr>
-    <tr class="detail-row section-header" id="detail-31_tribune_unit_materials-wt_header"><td colspan="8">Work Types</td></tr>
-    <tr class="detail-row" id="detail-31_tribune_unit_materials-wt_0"><td>Labour Hourly Management</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>7.25</span></td><td><span class="zero">—</span></td><td><span>7.25</span></td></tr>
-    <tr class="detail-row section-header" id="detail-31_tribune_unit_materials-emp_header"><td colspan="8">Employees</td></tr>
-    <tr class="detail-row" id="detail-31_tribune_unit_materials-emp_0"><td>Cameron Farmer</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span>7.25</span></td><td><span class="zero">—</span></td><td><span>7.25</span></td></tr>
+    <tr class="detail-row section-header" id="detail-p7-wth"><td colspan="8">Work Types</td></tr>
+    <tr class="detail-row" id="detail-p7-wt0"><td class="indent">Labour Hourly Management</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>7.25</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>7.25</td></tr>
+    <tr class="detail-row section-header" id="detail-p7-emph"><td colspan="8">Employees</td></tr>
+    <tr class="detail-row" id="detail-p7-emp0"><td class="indent">Cameron Farmer</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>7.25</td><td><span class="zero">—</span></td><td><span class="zero">—</span></td><td>7.25</td></tr>
   </tbody>
   <tfoot>
     <tr class="total-row">
       <td>TOTAL</td>
-      <td>50.68</td><td>11.62</td><td>26.13</td><td>28.05</td><td>0.00</td><td>116.48</td>
+      <td>50.68</td><td>19.62</td><td>26.13</td><td>28.05</td><td>15.12</td><td>0.00</td>
+      <td>139.60</td>
     </tr>
   </tfoot>
 </table>
-<p style="color:#aaa; font-size:12px; margin-top:12px;">Generated by Charlie 🦞 — May 15, 2026 6:00 AM</p>
+<p class="footer">Generated by Charlie 🦞 — May 16, 2026 at 6:00 AM</p>
 
 <script>
 function toggle(id) {
