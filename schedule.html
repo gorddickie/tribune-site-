@@ -182,14 +182,36 @@ async function loadWeek(weekStart) {
   if(!snaps.length) { document.getElementById('loading').textContent='❌ No data for that week.'; return; }
 
   const snapData = snaps[0].data;
-  allProjects = snapData.projects.map(p=>p.name);
-  allProjects.forEach((p,i) => {
-    projectColors[p] = COLORS[i%COLORS.length];
-    snapProjects[p] = snapData.projects.find(x=>x.name===p)?.worktypes||{};
-    Object.keys(snapProjects[p]).forEach((wt,j) => {
-      wtColors[estKey(p,wt)] = WT_COLORS[(i*3+j)%WT_COLORS.length];
+
+  // We'll merge estimates data in after fetching it below — grab it early
+  const estRespEarly = await fetch(`${SUPABASE_URL}/rest/v1/estimates?select=*`, {headers:hdrs});
+  const estRowsEarly = await estRespEarly.json();
+  for(const r of estRowsEarly) estMap[estKey(r.project,r.work_type)] = r;
+
+  // Build project list from snapshot; if empty, fall back to estimates
+  const snapProjList = snapData.projects||[];
+  if(snapProjList.length) {
+    allProjects = snapProjList.map(p=>p.name);
+    allProjects.forEach((p,i) => {
+      projectColors[p] = COLORS[i%COLORS.length];
+      snapProjects[p] = snapProjList.find(x=>x.name===p)?.worktypes||{};
+      Object.keys(snapProjects[p]).forEach((wt,j) => {
+        wtColors[estKey(p,wt)] = WT_COLORS[(i*3+j)%WT_COLORS.length];
+      });
     });
-  });
+  } else {
+    // No hours this week — build project/wt list from estimates so schedule still shows
+    const projSet = [...new Set(estRowsEarly.map(r=>r.project))];
+    allProjects = projSet;
+    allProjects.forEach((p,i) => {
+      projectColors[p] = COLORS[i%COLORS.length];
+      snapProjects[p] = {}; // no recorded hours
+      const wts = estRowsEarly.filter(r=>r.project===p).map(r=>r.work_type);
+      wts.forEach((wt,j) => {
+        wtColors[estKey(p,wt)] = WT_COLORS[(i*3+j)%WT_COLORS.length];
+      });
+    });
+  }
 
   // Load ALL snapshots to compute total recorded hours per work type
   const allSnapData = await fetch(`${SUPABASE_URL}/rest/v1/hours_snapshots?select=data&order=week_start.asc`, {headers:hdrs}).then(r=>r.json());
@@ -203,16 +225,9 @@ async function loadWeek(weekStart) {
     }
   }
 
-  const estResp = await fetch(`${SUPABASE_URL}/rest/v1/estimates?select=*`, {headers:hdrs});
-  const estRows = await estResp.json();
-  for(const r of estRows) estMap[estKey(r.project,r.work_type)] = r;
-
+  // estMap already populated above from estRowsEarly
   days = getDays();
   document.getElementById('loading').style.display='none';
-  if(!allProjects.length) {
-    document.getElementById('table-container').innerHTML='<p style="color:#999;font-size:14px;">⚠️ No project hours recorded for this week yet.</p>';
-    return;
-  }
   render();
   } catch(err) {
     document.getElementById('loading').textContent='❌ Error loading data: '+err.message;
