@@ -173,7 +173,9 @@ async function load() {
 
 async function loadWeek(weekStart) {
   document.getElementById('loading').style.display='block';
+  document.getElementById('loading').textContent='⏳ Loading...';
   document.getElementById('table-container').innerHTML='';
+  try {
 
   const snapResp = await fetch(`${SUPABASE_URL}/rest/v1/hours_snapshots?week_start=eq.${weekStart}&order=generated_at.desc&limit=1`, {headers:hdrs});
   const snaps = await snapResp.json();
@@ -208,6 +210,10 @@ async function loadWeek(weekStart) {
   days = getDays();
   document.getElementById('loading').style.display='none';
   render();
+  } catch(err) {
+    document.getElementById('loading').textContent='❌ Error loading data: '+err.message;
+    console.error('loadWeek error:', err);
+  }
 }
 
 function getOpenRows() {
