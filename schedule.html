@@ -285,7 +285,11 @@ function render() {
   for(const proj of allProjects) {
     const pid = safePid(proj);
     const color = projectColors[proj];
-    const wts = Object.keys(snapProjects[proj]||{});
+    const snapWtsForAgg = snapProjects[proj]||{};
+    const estWtsForAgg = Object.keys(Object.fromEntries(Object.entries(estMap).filter(([k])=>k.startsWith(proj+'||')).map(([k,v])=>[k.split('||')[1],v])));
+    const wts = [...new Set([...Object.keys(snapWtsForAgg), ...estWtsForAgg])];
+    // Ensure colors exist for all work types
+    wts.forEach((wt,j) => { if(!wtColors[estKey(proj,wt)]) wtColors[estKey(proj,wt)] = WT_COLORS[(allProjects.indexOf(proj)*3+j)%WT_COLORS.length]; });
 
     // Project aggregate day cells — show union of all work type schedules for this project
     const projDayCells = days.map(d=>{
@@ -319,7 +323,12 @@ function render() {
 
     bodyRows+=`<tr class="sec-header" id="sec-${pid}"><td colspan="${days.length+5}">Work Types</td></tr>`;
 
-    for(const [wt,wtData] of Object.entries(snapProjects[proj]||{})) {
+    // Merge work types from both snapshot and estimates
+    const snapWts = snapProjects[proj]||{};
+    const estWts = Object.keys(Object.fromEntries(Object.entries(estMap).filter(([k])=>k.startsWith(proj+'||')).map(([k,v])=>[k.split('||')[1],v])));
+    const allWts = [...new Set([...Object.keys(snapWts), ...estWts])];
+    for(const wt of allWts) {
+      const wtData = snapWts[wt]||{total:0,emp_by_date:{}}; {
       const wtid = safePid(`${proj}-${wt}`);
       const key = estKey(proj,wt);
       const e = estMap[key]||{};
