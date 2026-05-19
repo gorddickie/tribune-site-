@@ -209,6 +209,10 @@ async function loadWeek(weekStart) {
 
   days = getDays();
   document.getElementById('loading').style.display='none';
+  if(!allProjects.length) {
+    document.getElementById('table-container').innerHTML='<p style="color:#999;font-size:14px;">⚠️ No project hours recorded for this week yet.</p>';
+    return;
+  }
   render();
   } catch(err) {
     document.getElementById('loading').textContent='❌ Error loading data: '+err.message;
