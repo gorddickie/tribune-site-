@@ -162,9 +162,10 @@ async function load() {
 
   const sel = document.getElementById('week-select');
   sel.innerHTML = weeks.map(w=>{
-    const s=new Date(w.week_start+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
-    const e=new Date(w.week_end+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
-    return `<option value="${w.week_start}">${s} – ${e}</option>`;
+    const sd=new Date(w.week_start+'T00:00:00'); const ed=w.week_end?new Date(w.week_end+'T00:00:00'):null;
+    const s=isNaN(sd)?w.week_start:sd.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+    const e=ed&&!isNaN(ed)?ed.toLocaleDateString('en-US',{month:'short',day:'numeric'}):'';
+    return `<option value="${w.week_start}">${s}${e?' – '+e:''}</option>`;
   }).join('');
 
   await loadWeek(weeks[0].week_start);
