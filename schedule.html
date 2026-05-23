@@ -328,7 +328,7 @@ function render() {
     const estWts = Object.keys(Object.fromEntries(Object.entries(estMap).filter(([k])=>k.startsWith(proj+'||')).map(([k,v])=>[k.split('||')[1],v])));
     const allWts = [...new Set([...Object.keys(snapWts), ...estWts])];
     for(const wt of allWts) {
-      const wtData = snapWts[wt]||{total:0,emp_by_date:{}}; {
+      const wtData = snapWts[wt]||{total:0,emp_by_date:{}};
       const wtid = safePid(`${proj}-${wt}`);
       const key = estKey(proj,wt);
       const e = estMap[key]||{};
@@ -354,10 +354,7 @@ function render() {
         const workCls=hasWork?' has-work':'';
         const cls=['day-cell','droppable',isWeekend(d)?'weekend':'',isToday(d)?'today-col':''].filter(Boolean).join(' ')+workCls;
         const dragAttrs=scheduled&&isFirst?`draggable="true" ondragstart="onCellDragStart(event,'${safeJs(proj)}','${safeJs(wt)}')" style="${bg}cursor:grab;"`:`style="${bg}"`;  
-        return `<td class="${cls}" ${dragAttrs} data-date="${ds}" data-tip="${tipText}"
-          onmouseenter="showTip(event)" onmouseleave="hideTip()"
-          ondragover="onDragOver(event)" ondragleave="onDragLeave(event)"
-          ondrop="onDrop(event,'${safeJs(proj)}','${safeJs(wt)}')"></td>`;
+        return `<td class="${cls}" ${dragAttrs} data-date="${ds}" data-tip="${tipText}" onmouseenter="showTip(event)" onmouseleave="hideTip()" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event,'${safeJs(proj)}','${safeJs(wt)}')"></td>`;
       }).join('');
 
       bodyRows+=`
@@ -379,14 +376,7 @@ function render() {
     }
   }
 
-  document.getElementById('table-container').innerHTML=`
-  <table>
-    <thead>
-      <tr><th class="project-h" rowspan="2">Project / Work Type</th><th class="est-h" rowspan="2">Original<br>Estimate</th><th class="emp-h" rowspan="2">Employees</th><th class="days-h" rowspan="2">Days to<br>Complete</th><th style="background:#1a5276;min-width:80px;" rowspan="2">Recorded<br>Hrs to Date</th>${monthHeaders}</tr>
-      <tr>${dayHeaders}</tr>
-    </thead>
-    <tbody>${bodyRows}</tbody>
-  </table>`;
+  document.getElementById('table-container').innerHTML=`<table><thead><tr><th class="project-h" rowspan="2">Project / Work Type</th><th class="est-h" rowspan="2">Original<br>Estimate</th><th class="emp-h" rowspan="2">Employees</th><th class="days-h" rowspan="2">Days to<br>Complete</th><th style="background:#1a5276;min-width:80px;" rowspan="2">Recorded<br>Hrs to Date</th>${monthHeaders}</tr><tr>${dayHeaders}</tr></thead><tbody>${bodyRows}</tbody></table>`;
 
   restoreOpenRows(openRows);
   // Expand all projects (preserve any already-open ones)
