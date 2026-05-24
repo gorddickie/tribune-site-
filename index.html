@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Tribune Hours Report — Week of May 18, 2026</title>
+<title>Tribune Hours Report - Week of May 19, 2026</title>
 <style>
   body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
   h2 { color: #333; }
@@ -24,114 +24,446 @@
   tr.total-row td { background: #2c3e50; color: white; font-weight: bold; border: none; }
   .zero { color: #ddd; }
   .high { color: #e74c3c; font-weight: bold; }
+  .med { color: #e67e22; }
   p.hint { color: #aaa; font-size: 12px; margin-top: 4px; }
 </style>
 </head>
 <body>
-<h2>🏗️ Tribune Projects — Hours This Week (May 18–20, 2026)</h2>
+<h2>🏗️ Tribune Projects — Hours This Week (May 19–24, 2026)</h2>
 <p class="hint">👆 Click a project row to see work type and employee breakdown</p>
 <table>
   <thead>
     <tr>
       <th>Project</th>
-      <th>Mon 5/18</th><th>Tue 5/19</th><th>Wed 5/20</th>
+      <th>Mon 5/19</th><th>Tue 5/20</th><th>Wed 5/21</th><th>Thu 5/22</th>
       <th>TOTAL</th>
     </tr>
   </thead>
   <tbody>
 
-    <!-- 31 Tribune -->
-    <tr class="project-row" onclick="toggle('p0')">
-      <td><span class="project-name"><span class="arrow" id="arrow-p0">▶</span> 31 Tribune</span></td>
-      <td>8.25</td>
-      <td>8.00</td>
-      <td class="zero">—</td>
-      <td><b>16.25</b></td>
+    <tr class="project-row" onclick="toggle('tribune')">
+      <td><span class="project-name"><span class="arrow" id="arrow-tribune">▶</span> 31 Tribune</span></td>
+      <td class="med">9.00</td>
+      <td>2.50</td>
+      <td>1.50</td>
+      <td>2.50</td>
+      <td class="high">15.50</td>
     </tr>
-    <tr class="detail-row section-header" id="detail-p0-h1"><td colspan="5">Work Types</td></tr>
-    <tr class="detail-row" id="detail-p0-wt0"><td>Labour Hourly Management</td><td>8.25</td><td>2.00</td><td class="zero">—</td><td>10.25</td></tr>
-    <tr class="detail-row" id="detail-p0-wt1"><td>Sales</td><td class="zero">—</td><td>6.00</td><td class="zero">—</td><td>6.00</td></tr>
-    <tr class="detail-row section-header" id="detail-p0-h2"><td colspan="5">Employees</td></tr>
-    <tr class="detail-row" id="detail-p0-emp0"><td>Cameron Farmer</td><td>8.25</td><td>2.00</td><td class="zero">—</td><td>10.25</td></tr>
-    <tr class="detail-row" id="detail-p0-emp1"><td>Darrin Walsh</td><td class="zero">—</td><td>6.00</td><td class="zero">—</td><td>6.00</td></tr>
-
-    <!-- 31 Tribune 2nd-3rd Floor Stairwell -->
-    <tr class="project-row" onclick="toggle('p1')">
-      <td><span class="project-name"><span class="arrow" id="arrow-p1">▶</span> 31 Tribune 2nd-3rd Floor Stairwell</span></td>
-      <td class="zero">—</td>
-      <td>8.00</td>
-      <td class="zero">—</td>
-      <td><b>8.00</b></td>
-    </tr>
-    <tr class="detail-row section-header" id="detail-p1-h1"><td colspan="5">Work Types</td></tr>
-    <tr class="detail-row" id="detail-p1-wt0"><td>Door Hardware Install</td><td class="zero">—</td><td>8.00</td><td class="zero">—</td><td>8.00</td></tr>
-    <tr class="detail-row section-header" id="detail-p1-h2"><td colspan="5">Employees</td></tr>
-    <tr class="detail-row" id="detail-p1-emp0"><td>Mikhail Yakshin</td><td class="zero">—</td><td>8.00</td><td class="zero">—</td><td>8.00</td></tr>
-
-    <!-- 31 Tribune Exterior -->
-    <tr class="project-row" onclick="toggle('p2')">
-      <td><span class="project-name"><span class="arrow" id="arrow-p2">▶</span> 31 Tribune Exterior</span></td>
-      <td class="zero">—</td>
+    <tr class="detail-row section-header" id="detail-tribune-wt-h"><td colspan="6">Work Types</td></tr>
+    <tr class="detail-row" id="detail-tribune-wt-0">
+      <td>Cabinet Installs</td>
       <td>2.00</td>
       <td class="zero">—</td>
-      <td><b>2.00</b></td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>2.00</td>
     </tr>
-    <tr class="detail-row section-header" id="detail-p2-h1"><td colspan="5">Work Types</td></tr>
-    <tr class="detail-row" id="detail-p2-wt0"><td>Door Hardware Install</td><td class="zero">—</td><td>2.00</td><td class="zero">—</td><td>2.00</td></tr>
-    <tr class="detail-row section-header" id="detail-p2-h2"><td colspan="5">Employees</td></tr>
-    <tr class="detail-row" id="detail-p2-emp0"><td>Ihor Vonsovych</td><td class="zero">—</td><td>2.00</td><td class="zero">—</td><td>2.00</td></tr>
+    <tr class="detail-row" id="detail-tribune-wt-1">
+      <td>Labour Hourly Management</td>
+      <td>1.00</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>1.00</td>
+    </tr>
+    <tr class="detail-row" id="detail-tribune-wt-2">
+      <td>Sales</td>
+      <td>6.00</td>
+      <td>2.50</td>
+      <td>1.50</td>
+      <td>2.50</td>
+      <td class="med">12.50</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-tribune-emp-h"><td colspan="6">Employees</td></tr>
+    <tr class="detail-row" id="detail-tribune-emp-0">
+      <td>Cameron Farmer</td>
+      <td>3.00</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>3.00</td>
+    </tr>
+    <tr class="detail-row" id="detail-tribune-emp-1">
+      <td>Darrin Walsh</td>
+      <td>6.00</td>
+      <td>2.50</td>
+      <td>1.50</td>
+      <td>2.50</td>
+      <td class="med">12.50</td>
+    </tr>
 
-    <!-- 31 Tribune Level 1 Hallway -->
-    <tr class="project-row" onclick="toggle('p3')">
-      <td><span class="project-name"><span class="arrow" id="arrow-p3">▶</span> 31 Tribune Level 1 Hallway</span></td>
-      <td>8.00</td>
+    <tr class="project-row" onclick="toggle('stairwell')">
+      <td><span class="project-name"><span class="arrow" id="arrow-stairwell">▶</span> 31 Tribune 2nd-3rd Floor Stairwell</span></td>
+      <td class="med">8.00</td>
       <td class="zero">—</td>
       <td class="zero">—</td>
-      <td><b>8.00</b></td>
+      <td class="zero">—</td>
+      <td class="med">8.00</td>
     </tr>
-    <tr class="detail-row section-header" id="detail-p3-h1"><td colspan="5">Work Types</td></tr>
-    <tr class="detail-row" id="detail-p3-wt0"><td>Floor Prep</td><td>8.00</td><td class="zero">—</td><td class="zero">—</td><td>8.00</td></tr>
-    <tr class="detail-row section-header" id="detail-p3-h2"><td colspan="5">Employees</td></tr>
-    <tr class="detail-row" id="detail-p3-emp0"><td>Mikhail Yakshin</td><td>8.00</td><td class="zero">—</td><td class="zero">—</td><td>8.00</td></tr>
+    <tr class="detail-row section-header" id="detail-stairwell-wt-h"><td colspan="6">Work Types</td></tr>
+    <tr class="detail-row" id="detail-stairwell-wt-0">
+      <td>Door Hardware Install</td>
+      <td class="med">8.00</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="med">8.00</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-stairwell-emp-h"><td colspan="6">Employees</td></tr>
+    <tr class="detail-row" id="detail-stairwell-emp-0">
+      <td>Mikhail Yakshin</td>
+      <td class="med">8.00</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="med">8.00</td>
+    </tr>
 
-    <!-- 31 Tribune Unit 11 -->
-    <tr class="project-row" onclick="toggle('p4')">
-      <td><span class="project-name"><span class="arrow" id="arrow-p4">▶</span> 31 Tribune Unit 11</span></td>
+    <tr class="project-row" onclick="toggle('common')">
+      <td><span class="project-name"><span class="arrow" id="arrow-common">▶</span> 31 Tribune Common Areas</span></td>
       <td class="zero">—</td>
-      <td>8.08</td>
+      <td>1.00</td>
       <td class="zero">—</td>
-      <td><b>8.08</b></td>
+      <td>3.50</td>
+      <td>4.50</td>
     </tr>
-    <tr class="detail-row section-header" id="detail-p4-h1"><td colspan="5">Work Types</td></tr>
-    <tr class="detail-row" id="detail-p4-wt0"><td>Carpentry</td><td class="zero">—</td><td>8.08</td><td class="zero">—</td><td>8.08</td></tr>
-    <tr class="detail-row section-header" id="detail-p4-h2"><td colspan="5">Employees</td></tr>
-    <tr class="detail-row" id="detail-p4-emp0"><td>Adam Brewer</td><td class="zero">—</td><td>8.08</td><td class="zero">—</td><td>8.08</td></tr>
+    <tr class="detail-row section-header" id="detail-common-wt-h"><td colspan="6">Work Types</td></tr>
+    <tr class="detail-row" id="detail-common-wt-0">
+      <td>Carpentry</td>
+      <td class="zero">—</td>
+      <td>1.00</td>
+      <td class="zero">—</td>
+      <td>3.50</td>
+      <td>4.50</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-common-emp-h"><td colspan="6">Employees</td></tr>
+    <tr class="detail-row" id="detail-common-emp-0">
+      <td>Cameron Farmer</td>
+      <td class="zero">—</td>
+      <td>1.00</td>
+      <td class="zero">—</td>
+      <td>3.50</td>
+      <td>4.50</td>
+    </tr>
 
-    <!-- 31 Tribune Unit 5 -->
-    <tr class="project-row" onclick="toggle('p5')">
-      <td><span class="project-name"><span class="arrow" id="arrow-p5">▶</span> 31 Tribune Unit 5</span></td>
+    <tr class="project-row" onclick="toggle('exterior')">
+      <td><span class="project-name"><span class="arrow" id="arrow-exterior">▶</span> 31 Tribune Exterior</span></td>
+      <td>2.00</td>
       <td class="zero">—</td>
-      <td>10.27</td>
       <td class="zero">—</td>
-      <td><b>10.27</b></td>
+      <td class="zero">—</td>
+      <td>2.00</td>
     </tr>
-    <tr class="detail-row section-header" id="detail-p5-h1"><td colspan="5">Work Types</td></tr>
-    <tr class="detail-row" id="detail-p5-wt0"><td>Cabinet Installs</td><td class="zero">—</td><td>8.02</td><td class="zero">—</td><td>8.02</td></tr>
-    <tr class="detail-row" id="detail-p5-wt1"><td>Carpentry</td><td class="zero">—</td><td>2.25</td><td class="zero">—</td><td>2.25</td></tr>
-    <tr class="detail-row section-header" id="detail-p5-h2"><td colspan="5">Employees</td></tr>
-    <tr class="detail-row" id="detail-p5-emp0"><td>Cameron Farmer</td><td class="zero">—</td><td>4.25</td><td class="zero">—</td><td>4.25</td></tr>
-    <tr class="detail-row" id="detail-p5-emp1"><td>Ihor Vonsovych</td><td class="zero">—</td><td>6.02</td><td class="zero">—</td><td>6.02</td></tr>
+    <tr class="detail-row section-header" id="detail-exterior-wt-h"><td colspan="6">Work Types</td></tr>
+    <tr class="detail-row" id="detail-exterior-wt-0">
+      <td>Door Hardware Install</td>
+      <td>2.00</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>2.00</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-exterior-emp-h"><td colspan="6">Employees</td></tr>
+    <tr class="detail-row" id="detail-exterior-emp-0">
+      <td>Ihor Vonsovych</td>
+      <td>2.00</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>2.00</td>
+    </tr>
+
+    <tr class="project-row" onclick="toggle('hallway1')">
+      <td><span class="project-name"><span class="arrow" id="arrow-hallway1">▶</span> 31 Tribune Level 1 Hallway</span></td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="med">8.52</td>
+      <td class="med">8.52</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-hallway1-wt-h"><td colspan="6">Work Types</td></tr>
+    <tr class="detail-row" id="detail-hallway1-wt-0">
+      <td>Cabinet Installs</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>4.27</td>
+      <td>4.27</td>
+    </tr>
+    <tr class="detail-row" id="detail-hallway1-wt-1">
+      <td>Door Installation</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>4.25</td>
+      <td>4.25</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-hallway1-emp-h"><td colspan="6">Employees</td></tr>
+    <tr class="detail-row" id="detail-hallway1-emp-0">
+      <td>Ihor Vonsovych</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>4.25</td>
+      <td>4.25</td>
+    </tr>
+    <tr class="detail-row" id="detail-hallway1-emp-1">
+      <td>Mikhail Yakshin</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>4.27</td>
+      <td>4.27</td>
+    </tr>
+
+    <tr class="project-row" onclick="toggle('u11')">
+      <td><span class="project-name"><span class="arrow" id="arrow-u11">▶</span> 31 Tribune Unit 11</span></td>
+      <td class="med">8.08</td>
+      <td>6.50</td>
+      <td>1.00</td>
+      <td class="zero">—</td>
+      <td class="high">15.58</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-u11-wt-h"><td colspan="6">Work Types</td></tr>
+    <tr class="detail-row" id="detail-u11-wt-0">
+      <td>Cabinet Installs</td>
+      <td class="zero">—</td>
+      <td>6.50</td>
+      <td>1.00</td>
+      <td class="zero">—</td>
+      <td>7.50</td>
+    </tr>
+    <tr class="detail-row" id="detail-u11-wt-1">
+      <td>Carpentry</td>
+      <td class="med">8.08</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="med">8.08</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-u11-emp-h"><td colspan="6">Employees</td></tr>
+    <tr class="detail-row" id="detail-u11-emp-0">
+      <td>Adam Brewer</td>
+      <td class="med">8.08</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="med">8.08</td>
+    </tr>
+    <tr class="detail-row" id="detail-u11-emp-1">
+      <td>Cameron Farmer</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>1.00</td>
+      <td class="zero">—</td>
+      <td>1.00</td>
+    </tr>
+    <tr class="detail-row" id="detail-u11-emp-2">
+      <td>Ihor Vonsovych</td>
+      <td class="zero">—</td>
+      <td>6.50</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>6.50</td>
+    </tr>
+
+    <tr class="project-row" onclick="toggle('u12')">
+      <td><span class="project-name"><span class="arrow" id="arrow-u12">▶</span> 31 Tribune Unit 12</span></td>
+      <td class="zero">—</td>
+      <td>4.50</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>4.50</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-u12-wt-h"><td colspan="6">Work Types</td></tr>
+    <tr class="detail-row" id="detail-u12-wt-0">
+      <td>Cabinet Installs</td>
+      <td class="zero">—</td>
+      <td>4.50</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>4.50</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-u12-emp-h"><td colspan="6">Employees</td></tr>
+    <tr class="detail-row" id="detail-u12-emp-0">
+      <td>Cameron Farmer</td>
+      <td class="zero">—</td>
+      <td>4.50</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>4.50</td>
+    </tr>
+
+    <tr class="project-row" onclick="toggle('u17')">
+      <td><span class="project-name"><span class="arrow" id="arrow-u17">▶</span> 31 Tribune Unit 17</span></td>
+      <td class="zero">—</td>
+      <td class="med">9.02</td>
+      <td>3.75</td>
+      <td class="zero">—</td>
+      <td class="med">12.77</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-u17-wt-h"><td colspan="6">Work Types</td></tr>
+    <tr class="detail-row" id="detail-u17-wt-0">
+      <td>Cabinet Installs</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>3.75</td>
+      <td class="zero">—</td>
+      <td>3.75</td>
+    </tr>
+    <tr class="detail-row" id="detail-u17-wt-1">
+      <td>Carpentry</td>
+      <td class="zero">—</td>
+      <td class="med">8.02</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="med">8.02</td>
+    </tr>
+    <tr class="detail-row" id="detail-u17-wt-2">
+      <td>Drywall</td>
+      <td class="zero">—</td>
+      <td>1.00</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>1.00</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-u17-emp-h"><td colspan="6">Employees</td></tr>
+    <tr class="detail-row" id="detail-u17-emp-0">
+      <td>Adam Brewer</td>
+      <td class="zero">—</td>
+      <td class="med">8.02</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="med">8.02</td>
+    </tr>
+    <tr class="detail-row" id="detail-u17-emp-1">
+      <td>Cameron Farmer</td>
+      <td class="zero">—</td>
+      <td>1.00</td>
+      <td>3.75</td>
+      <td class="zero">—</td>
+      <td>4.75</td>
+    </tr>
+
+    <tr class="project-row" onclick="toggle('u18')">
+      <td><span class="project-name"><span class="arrow" id="arrow-u18">▶</span> 31 Tribune Unit 18</span></td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="high">18.62</td>
+      <td>3.00</td>
+      <td class="high">21.62</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-u18-wt-h"><td colspan="6">Work Types</td></tr>
+    <tr class="detail-row" id="detail-u18-wt-0">
+      <td>Cabinet Installs</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="high">18.62</td>
+      <td>3.00</td>
+      <td class="high">21.62</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-u18-emp-h"><td colspan="6">Employees</td></tr>
+    <tr class="detail-row" id="detail-u18-emp-0">
+      <td>Cameron Farmer</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>2.50</td>
+      <td>3.00</td>
+      <td>5.50</td>
+    </tr>
+    <tr class="detail-row" id="detail-u18-emp-1">
+      <td>Ihor Vonsovych</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>7.97</td>
+      <td class="zero">—</td>
+      <td>7.97</td>
+    </tr>
+    <tr class="detail-row" id="detail-u18-emp-2">
+      <td>Mikhail Yakshin</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="med">8.15</td>
+      <td class="zero">—</td>
+      <td class="med">8.15</td>
+    </tr>
+
+    <tr class="project-row" onclick="toggle('u5')">
+      <td><span class="project-name"><span class="arrow" id="arrow-u5">▶</span> 31 Tribune Unit 5</span></td>
+      <td class="med">9.77</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="med">9.77</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-u5-wt-h"><td colspan="6">Work Types</td></tr>
+    <tr class="detail-row" id="detail-u5-wt-0">
+      <td>Cabinet Installs</td>
+      <td>7.52</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>7.52</td>
+    </tr>
+    <tr class="detail-row" id="detail-u5-wt-1">
+      <td>Carpentry</td>
+      <td>2.25</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>2.25</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-u5-emp-h"><td colspan="6">Employees</td></tr>
+    <tr class="detail-row" id="detail-u5-emp-0">
+      <td>Cameron Farmer</td>
+      <td>3.75</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>3.75</td>
+    </tr>
+    <tr class="detail-row" id="detail-u5-emp-1">
+      <td>Ihor Vonsovych</td>
+      <td>6.02</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>6.02</td>
+    </tr>
+
+    <tr class="project-row" onclick="toggle('u6')">
+      <td><span class="project-name"><span class="arrow" id="arrow-u6">▶</span> 31 Tribune Unit 6</span></td>
+      <td>2.25</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>2.25</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-u6-wt-h"><td colspan="6">Work Types</td></tr>
+    <tr class="detail-row" id="detail-u6-wt-0">
+      <td>Cabinet Installs</td>
+      <td>2.25</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>2.25</td>
+    </tr>
+    <tr class="detail-row section-header" id="detail-u6-emp-h"><td colspan="6">Employees</td></tr>
+    <tr class="detail-row" id="detail-u6-emp-0">
+      <td>Cameron Farmer</td>
+      <td>2.25</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td class="zero">—</td>
+      <td>2.25</td>
+    </tr>
 
   </tbody>
   <tfoot>
-    <tr class="total-row">
-      <td>TOTAL</td>
-      <td>16.25</td><td>36.35</td><td class="zero">—</td>
-      <td>52.60</td>
-    </tr>
+    <tr class="total-row"><td>TOTAL</td><td>39.10</td><td>23.52</td><td>24.87</td><td>17.52</td><td>105.00</td></tr>
   </tfoot>
 </table>
-<p style="color:#aaa; font-size:12px; margin-top:12px;">Generated by Charlie 🦞 — May 20, 2026</p>
+<p style="color:#aaa; font-size:12px; margin-top:12px;">Generated by Charlie 🦞 — May 24, 2026</p>
 
 <script>
 function toggle(id) {
